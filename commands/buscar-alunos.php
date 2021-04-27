@@ -1,6 +1,7 @@
 <?php
 
 use Alura\Doctrine\Entity\Aluno;
+use Alura\Doctrine\Entity\Telefone;
 use Alura\Doctrine\Helper\EntityManagerFactory;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -18,12 +19,18 @@ $alunoList = $alunoRepository->findAll();
 
 //Exibindo lista de alunos
 foreach ($alunoList as $aluno) {
+    $telefones = $aluno
+        ->getTelefones()
+        ->map(function (Telefone $telefone) {
+            return $telefone->getNumero();
+        })
+        ->toArray();
     echo "ID: {$aluno->getId()} | Nome: {$aluno->getNome()}" . PHP_EOL;
+    echo "Telefone(s): " . implode(' , ', $telefones) . PHP_EOL;
+
 }
 
 //buscar um aluno em específico
-$umDeterminadoAluno = $alunoRepository->findOneBy([
-    'nome' => 'Ricardo Júnior'
-]);
+//$umDeterminadoAluno = $alunoRepository->findOneBy(['nome' => 'Ricardo Júnior']);
 
 //var_dump($umDeterminadoAluno);
