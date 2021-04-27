@@ -1,0 +1,19 @@
+{
+    "name": "rcdev99/doctrine-initial-project",
+    "description": "Projeto da Alura para introducao ao Doctrine",
+    "type": "library",
+    "authors": [
+        {
+            "name": "rcdev99",
+            "email": "ricardo06.rodrigues@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alura\\Doctrine\\": "src/"
+        }
+    }
+}
