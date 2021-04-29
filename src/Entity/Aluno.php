@@ -78,6 +78,9 @@ class Aluno
         return $this;
     }
 
+    /**
+     * @var Curso[]
+     */
     public function getCursos(): Collection
     {
         return $this->cursos;
