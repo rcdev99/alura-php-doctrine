@@ -14,7 +14,7 @@ $entityManager = $entityManagerFactory->getEntityManager();
 $alunosRepository = $entityManager->getRepository(Aluno::class);
 
 /**@var Aluno[] $alunos*/
-$alunos = $alunosRepository->buscarAlunosPorCursos();
+$alunos = $alunosRepository->buscarAlunosPorCursosQB();
 
 //Exibindo lista de alunos
 foreach ($alunos as $aluno) {
