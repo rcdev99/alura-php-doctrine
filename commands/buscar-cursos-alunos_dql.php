@@ -4,24 +4,17 @@ use Alura\Doctrine\Entity\Aluno;
 use Alura\Doctrine\Entity\Curso;
 use Alura\Doctrine\Entity\Telefone;
 use Alura\Doctrine\Helper\EntityManagerFactory;
+use Alura\Doctrine\Repository\AlunoRepository;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManagerFactory = new EntityManagerFactory();
 $entityManager = $entityManagerFactory->getEntityManager();
+/**@var AlunoRepository $alunosRepository */
 $alunosRepository = $entityManager->getRepository(Aluno::class);
 
-//Utilização de DQL para otimizar busca
-
-$classeAluno = Aluno::class;
-$dql = "SELECT aluno, telefones, cursos 
-        FROM $classeAluno aluno
-        JOIN aluno.telefones telefones
-        JOIN aluno.cursos cursos";
-$query = $entityManager->createQuery($dql);
-
 /**@var Aluno[] $alunos*/
-$alunos = $query->getResult();
+$alunos = $alunosRepository->buscarAlunosPorCursosQB();
 
 //Exibindo lista de alunos
 foreach ($alunos as $aluno) {
